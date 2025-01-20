@@ -5,7 +5,8 @@ import "@/css/satoshi.css";
 import "@/css/style.css";
 import React, { useEffect, useState } from "react";
 import Loader from "@/components/common/Loader";
-import { TransferHistoryProvider } from "./context/TransferHistoryContext";
+import { TransferHistoryProvider } from "./context/TransferHistory/TransferHistoryState";
+import { GlobalProvider } from "./context/Global/GlobalState";
 
 export default function RootLayout({
   children,
@@ -15,18 +16,30 @@ export default function RootLayout({
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loading, setLoading] = useState<boolean>(true);
 
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 1000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => setLoading(false), 1000);
+  // }, []);
+
+  // useEffect(() => {
+  //   // Simulate loading time, ensure it clears correctly
+  //   const timer = setTimeout(() => {
+  //     setLoading(false);
+  //   }, 1000);
+
+  //   return () => clearTimeout(timer); // Cleanup timeout on component unmount
+  // }, []);
 
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>
-      <TransferHistoryProvider>
-        <div className="dark:bg-boxdark-2 dark:text-bodydark">
-          {loading ? <Loader /> : children}
-        </div>
-        </TransferHistoryProvider>
+        <GlobalProvider>
+          <TransferHistoryProvider>
+            {/* <div className="dark:bg-boxdark-2 dark:text-bodydark">
+              {loading ? <Loader /> : children}
+            </div> */}
+            {children}
+          </TransferHistoryProvider>
+        </GlobalProvider>
       </body>
     </html>
   );
