@@ -121,7 +121,7 @@ export const TransferHistoryProvider: React.FC<{ children: React.ReactNode }> = 
   const getTransactions = async () => {
     try {
       console.log("Fetching transactions...");
-      const response = await axios.get("http://localhost:8892/api/v1/transferhistory");
+      const response = await axios.get("http://192.168.12.180:8899/api/v1/transferhistory");
       console.log("Transactions fetched successfully:", response.data);
       dispatch({ type: "GET_TRANSACTIONS", payload: response.data });
     } catch (error) {
@@ -134,7 +134,7 @@ export const TransferHistoryProvider: React.FC<{ children: React.ReactNode }> = 
     try {
       console.log("Adding Transaction...");
 
-      const response = await axios.post("http://localhost:8892/api/v1/transferhistory", transaction, {
+      const response = await axios.post("http://192.168.12.180:8899/api/v1/transferhistory", transaction, {
         headers: { "Content-Type": "application/json" },
       });
       console.log("Transaction added successfully: ", response.data);
