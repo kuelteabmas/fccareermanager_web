@@ -27,6 +27,8 @@ export const transferHistoryReducer = (
   state: TransferHistoryStateType,
   action: TransferHistoryActionType
 ): TransferHistoryStateType => {
+  const actionType = action.type
+
   switch (action.type) {
     case "GET_TRANSACTIONS":
       return { ...state, transactions: action.payload };
@@ -35,6 +37,6 @@ export const transferHistoryReducer = (
     case "SELECT_TRANSACTION":
       return { ...state, selectedTransaction: action.payload };
     default:
-      throw new Error(`Unhandled action type: ${action.type}`);
+      throw new Error(`Unhandled action type: ${actionType}`);
   }
 };
