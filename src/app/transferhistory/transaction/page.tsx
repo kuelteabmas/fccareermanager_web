@@ -10,6 +10,10 @@ import SelectGroupOne from "@/components/SelectGroup/SelectGroupOne";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import SwitcherOne from "@/components/Switchers/SwitcherOne";
 import SeasonSelectorDropdown from "@/components/transferhistory/SeasonSelectorDropdown";
+import LoanTypeDropdown from "@/components/transferhistory/LoanTypeDropdown";
+import LoanDurationDropdown from "@/components/transferhistory/LoanDurationDropdown";
+import DealTypeDropDown from "@/components/transferhistory/DealTypeDropDown";
+import SelectorDropdown from "@/components/transferhistory/SelectorDropdown";
 import { GlobalProvider } from "@/app/context/Global/GlobalState";
 import React from "react";
 
@@ -51,10 +55,10 @@ const TransactionPage = () => {
     performanceBonusType: "",
     performanceBonusCount: "",
     performanceBonusSum: "",
-    preDealStatus: "",
-    postDealStatus: "",
-    preDealOverall: "",
-    postDealOverall: "",
+    preDealPlayerStatus: "",
+    postDealPlayerStatus: "",
+    preDealPlayerOverall: "",
+    postDealPlayerOverall: "",
     overallGrowth: "",
     updatedMarketValue: "",
   });
@@ -119,14 +123,23 @@ const TransactionPage = () => {
                     <SeasonSelectorDropdown />
                   </div>
 
+                  {/* <div className="w-full xl:w-1/2">
+                    <SelectorDropdown 
+                      options={1}
+                      option_names={["winter", "sown", "sdfsdf", "oiueq"]}
+                      menu_title={"Season Yearrrrrrrrr"}
+                    />
+                  </div>
+                   */}
+
                   <div className="w-full xl:w-1/2">
                     <label className="mb-3 block text-sm font-medium text-black dark:text-white">
                       Season Year
                     </label>
                     <input
                       type="text"
-                      name="lastName"
-                      value={formState.lastName}
+                      name="seasonYear"
+                      value={formState.seasonYear}
                       onChange={handleInputChange}
                       placeholder="Enter Season Year"
                       className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
@@ -141,48 +154,19 @@ const TransactionPage = () => {
                   </div> */}
 
                   <div className="w-full xl:w-1/2">
-                    <label className="mb-3 block text-sm font-medium text-black dark:text-white">
-                      Deal Type
-                    </label>
-                    <input
-                      type="text"
-                      name="dealType"
-                      value={formState.dealType}
-                      onChange={handleInputChange}
-                      placeholder="Enter Deal Type - Loan or Transfer"
-                      className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                    />
+                    <DealTypeDropDown />
                   </div>
 
                   <div className="w-full xl:w-1/2">
-                    <label className="mb-3 block text-sm font-medium text-black dark:text-white">
-                      Loan Type
-                    </label>
-                    <input
-                      type="text"
-                      name="loanType"
-                      value={formState.loanType}
-                      onChange={handleInputChange}
-                      placeholder="Enter Loan Type - Loan or Loan w/ Buy"
-                      className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                    />
+                    <LoanTypeDropdown />
                   </div>
                 </div>
 
 
                 <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
+
                   <div className="w-full xl:w-1/2">
-                    <label className="mb-3 block text-sm font-medium text-black dark:text-white">
-                      Loan Duration
-                    </label>
-                    <input
-                      type="text"
-                      name="loanDuration"
-                      value={formState.loanDuration}
-                      onChange={handleInputChange}
-                      placeholder="Enter Loan Duration - 6 months, 1 year or 2 years"
-                      className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                    />
+                    <LoanDurationDropdown />
                   </div>
 
                   <div className="w-full xl:w-1/2">
@@ -357,8 +341,8 @@ const TransactionPage = () => {
                     </label>
                     <input
                       type="text"
-                      name="preDealStatus"
-                      value={formState.preDealStatus}
+                      name="preDealPlayerStatus"
+                      value={formState.preDealPlayerStatus}
                       onChange={handleInputChange}
                       placeholder="Enter Pre Deal Player Status"
                       className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
@@ -371,8 +355,8 @@ const TransactionPage = () => {
                     </label>
                     <input
                       type="text"
-                      name="lastName"
-                      value={formState.postDealStatus}
+                      name="postDealPlayerStatus"
+                      value={formState.postDealPlayerStatus}
                       onChange={handleInputChange}
                       placeholder="Enter Post Deal Player Status"
                       className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
@@ -387,8 +371,8 @@ const TransactionPage = () => {
                     </label>
                     <input
                       type="text"
-                      name="preDealOverall"
-                      value={formState.preDealOverall}
+                      name="preDealPlayerOverall"
+                      value={formState.preDealPlayerOverall}
                       onChange={handleInputChange}
                       placeholder="Enter Pre Deal Player Overall"
                       className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
@@ -401,8 +385,8 @@ const TransactionPage = () => {
                     </label>
                     <input
                       type="text"
-                      name="postDealOverall"
-                      value={formState.postDealOverall}
+                      name="postDealPlayerOverall"
+                      value={formState.postDealPlayerOverall}
                       onChange={handleInputChange}
                       placeholder="Enter Post Deal Player Overall"
                       className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
