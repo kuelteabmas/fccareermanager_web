@@ -1,8 +1,9 @@
-
 "use client";
 // import { Metadata } from "next";
 import { useGlobalContext } from "@/app/context/Global/GlobalContext";
 import { useTransferHistoryContext } from "@/app/context/TransferHistory/TransferHistoryContext";
+import { useTransferHistoryTransactionContext } from "@/app/context/TransferHistoryTransaction/TransferHistoryTransactionContext";
+
 import Link from "next/link";
 
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
@@ -23,7 +24,6 @@ import React from "react";
 //     "New Transaction | EA FC / FIFA Career Manager Repository Tracker",
 // };
 
-
 const TransactionPage = () => {
   // const { state: globalState, dispatch: globalDispatch } = useGlobalContext();
   // const { state: transferHistoryState, dispatch: transferHistoryDispatch } = useTransferHistoryContext();
@@ -33,8 +33,8 @@ const TransactionPage = () => {
   //   transferHistoryDispatch({ type: "ADD_TRANSACTION", payload: newTransaction });
   // };
 
-
   const { dispatch: transferHistoryDispatch } = useTransferHistoryContext();
+  const { state, dispatch: transferHistoryTransactionDispatch } = useTransferHistoryTransactionContext();
 
   const [formState, setFormState] = React.useState({
     firstName: "",
@@ -73,12 +73,10 @@ const TransactionPage = () => {
 
     transferHistoryDispatch({ type: "ADD_TRANSACTION", payload: formState });
   };
-  
+
   return (
     <DefaultLayout>
       <Breadcrumb pageName="New Transaction" />
-
-
 
       {/* <div className="grid grid-cols-1 gap-9 sm:grid-cols-2"> */}
       <div className="flex flex-col gap-10">
@@ -117,7 +115,6 @@ const TransactionPage = () => {
                   </div>
                 </div>
 
-
                 <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
                   <div className="w-full xl:w-1/2">
                     <SeasonSelectorDropdown />
@@ -147,7 +144,6 @@ const TransactionPage = () => {
                   </div>
                 </div>
 
-
                 <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
                   {/* <div className="w-full xl:w-1/2">
                     <SeasonSelectorDropdown />
@@ -157,11 +153,10 @@ const TransactionPage = () => {
                     <DealTypeDropDown />
                   </div>
 
-                  <div className="w-full xl:w-1/2">
-                    <LoanTypeDropdown />
+                  <div className={state.isLoanTypeHidden ? "collapse w-full xl:w-1/2" : "visible w-full xl:w-1/2"}>
+                      <LoanTypeDropdown />
                   </div>
                 </div>
-
 
                 <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
 
@@ -213,7 +208,7 @@ const TransactionPage = () => {
                     />
                   </div>
                 </div>
-                
+
                 <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
                   <div className="w-full xl:w-1/2">
                     <label className="mb-3 block text-sm font-medium text-black dark:text-white">
@@ -424,7 +419,7 @@ const TransactionPage = () => {
                   </div>
                 </div>
 
-                <button 
+                <button
                   // onClick={() => addTransaction}
                   type="submit"
                   className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90"
@@ -436,9 +431,9 @@ const TransactionPage = () => {
           </div>
         </div>
       </div>
-
     </DefaultLayout>
   );
 };
 
 export default TransactionPage;
+                                                                                                                                                                                                                                                                                                                                                                                                       

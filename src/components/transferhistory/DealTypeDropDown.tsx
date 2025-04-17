@@ -1,13 +1,28 @@
 "use client";
 import React, { useState } from "react";
+import { useTransferHistoryTransactionContext } from "@/app/context/TransferHistoryTransaction/TransferHistoryTransactionContext";
 
 const DealTypeDropDown: React.FC = () => {
-  const [selectedOption, setSelectedOption] = useState<string>("");
-  const [isOptionSelected, setIsOptionSelected] = useState<boolean>(false);
+  const {state, dispatch: transferHistoryTransactionDispatch } = useTransferHistoryTransactionContext();
 
-  const changeTextColor = () => {
-    setIsOptionSelected(true);
-  };
+  const [isOptionSelected, setIsOptionSelected] = useState<boolean>(true);
+
+    const handleSetDealType = (e: React.FormEvent) => {
+      e.preventDefault();
+
+      transferHistoryTransactionDispatch({ type: "SET_DEALTYPE", payload: e.target.value });
+
+      if (state.dealType == "Loan") { //
+        console.log("Loan e.target.value: ", e.target.value)
+        console.log("Loan state.dealtype: ", state.dealType)
+        transferHistoryTransactionDispatch({ type: "SHOW_LOANTYPE_DROPDOWN", payload: true})
+      } 
+      else if (state.dealType == "Transfer") {
+        console.log("Transfer e.target.value: ", e.target.value)
+        console.log("Transfer state.dealtype: ", state.dealType)
+        transferHistoryTransactionDispatch({ type: "SHOW_LOANTYPE_DROPDOWN", payload: false})
+      }
+    };
 
   return (
     <div>
@@ -48,11 +63,8 @@ const DealTypeDropDown: React.FC = () => {
         </span>
 
         <select
-          value={selectedOption}
-          onChange={(e) => {
-            setSelectedOption(e.target.value);
-            changeTextColor();
-          }}
+          value={state.dealType}
+          onChange={handleSetDealType}
           className={`relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-12 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input ${
             isOptionSelected ? "text-black dark:text-white" : ""
           }`}
@@ -60,10 +72,10 @@ const DealTypeDropDown: React.FC = () => {
           <option value="" disabled className="text-body dark:text-bodydark">
             Select Deal Type
           </option>
-          <option value="USA" className="text-body dark:text-bodydark">
+          <option value="Transfer" className="text-body dark:text-bodydark">
             Transfer
           </option>
-          <option value="UK" className="text-body dark:text-bodydark">
+          <option value="Loan" className="text-body dark:text-bodydark">
             Loan
           </option>
         </select>

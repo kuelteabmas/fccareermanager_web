@@ -6,6 +6,7 @@ import "@/css/style.css";
 import React, { useEffect, useState } from "react";
 import Loader from "@/components/common/Loader";
 import { TransferHistoryProvider } from "./context/TransferHistory/TransferHistoryState";
+import { TransferHistoryTransactionProvider } from "./context/TransferHistoryTransaction/TransferHistoryTransactionState";
 import { GlobalProvider } from "./context/Global/GlobalState";
 
 export default function RootLayout({
@@ -34,10 +35,12 @@ export default function RootLayout({
       <body suppressHydrationWarning={true}>
         <GlobalProvider>
           <TransferHistoryProvider>
+          <TransferHistoryTransactionProvider>
             {/* <div className="dark:bg-boxdark-2 dark:text-bodydark">
               {loading ? <Loader /> : children}
             </div> */}
             {children}
+            </TransferHistoryTransactionProvider>
           </TransferHistoryProvider>
         </GlobalProvider>
       </body>
