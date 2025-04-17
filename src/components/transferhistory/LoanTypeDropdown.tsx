@@ -60,10 +60,10 @@ const LoanTypeDropdown: React.FC = () => {
           <option value="" disabled className="text-body dark:text-bodydark">
             Select Loan Type
           </option>
-          <option value="USA" className="text-body dark:text-bodydark">
+          <option value="Loan" className="text-body dark:text-bodydark">
             Loan
           </option>
-          <option value="UK" className="text-body dark:text-bodydark">
+          <option value="Loan With Option to Buy" className="text-body dark:text-bodydark">
             Loan With Option to Buy
           </option>
         </select>

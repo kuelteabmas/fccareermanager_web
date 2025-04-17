@@ -153,14 +153,25 @@ const TransactionPage = () => {
                     <DealTypeDropDown />
                   </div>
 
-                  <div className={state.isLoanTypeHidden ? "collapse w-full xl:w-1/2" : "visible w-full xl:w-1/2"}>
-                      <LoanTypeDropdown />
+                  <div
+                    className={
+                      state.isLoanTypeHidden
+                        ? "collapse w-full xl:w-1/2"
+                        : "visible w-full xl:w-1/2"
+                    }
+                  >
+                    <LoanTypeDropdown />
                   </div>
                 </div>
 
                 <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
-
-                  <div className="w-full xl:w-1/2">
+                  <div
+                    className={
+                      state.isLoanTypeHidden
+                        ? "collapse w-full xl:w-1/2"
+                        : "visible w-full xl:w-1/2"
+                    }
+                  >
                     <LoanDurationDropdown />
                   </div>
 
@@ -436,4 +447,3 @@ const TransactionPage = () => {
 };
 
 export default TransactionPage;
-                                                                                                                                                                                                                                                                                                                                                                                                       
